@@ -1,0 +1,819 @@
+"""Exposes a URL that specifies the behavior of this scalar."""
+directive @specifiedBy(
+  """The URL that specifies the behavior of this scalar."""
+  url: String!
+) on SCALAR
+
+"""
+Indicates exactly one field must be supplied and this field must not be `null`.
+"""
+directive @oneOf on INPUT_OBJECT
+
+input ApplyCouponDto {
+  code: String!
+}
+
+type BillingInfoDto {
+  addressOne: String!
+  addressTwo: String!
+  city: String!
+  state: String!
+  country: String!
+  zipcode: String!
+  email: String!
+  phone: String!
+}
+
+input BillingInfoInput {
+  addressOne: String!
+  addressTwo: String
+  city: String!
+  state: String!
+  country: String!
+  zipcode: String!
+  email: String!
+  phone: String!
+}
+
+type Cart {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  user: User
+  guestId: String
+  subTotal: Int!
+  coupon: String
+  couponAmount: Int
+  discountAmount: Int
+  shippingAmount: Int
+  taxAmount: Int
+  total: Int!
+  items: [CartItem!]!
+}
+
+type CartItem {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  cart: Cart!
+  product: Product!
+  quantity: Int!
+  price: Int!
+  total: Int
+}
+
+input CategoriesInput {
+  id: String!
+}
+
+type Category {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String!
+  description: String
+  slug: String
+  products(take: Int = 10, skip: Int = 0): [Product!]
+}
+
+type Coupon {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  code: String!
+  title: String!
+  description: String
+  type: CouponType
+  usageType: CouponUsageType
+  lastUsedAt: DateTime
+  validFrom: DateTime
+  validThrough: DateTime
+  amount: Int
+  percentage: Int
+  enabled: Boolean
+}
+
+enum CouponType {
+  FLAT
+  PERCENTAGE
+}
+
+enum CouponUsageType {
+  MULTI_USE
+  SINGLE_USE
+}
+
+input CreateCartInput {
+  userId: String
+  guestId: String
+  items: [Item!]!
+}
+
+input CreateCartItemInput {
+  cartId: String!
+  productId: String!
+  quantity: Int!
+  price: Int!
+}
+
+input CreateCategoryInput {
+  title: String!
+  description: String
+  products: [ProductIds!]
+}
+
+input CreateCouponInput {
+  code: String!
+  title: String!
+  description: String
+  type: CouponType
+  usageType: CouponUsageType
+  validFrom: DateTime
+  validThrough: DateTime
+  amount: Int
+  percentage: Int
+  enabled: Boolean
+}
+
+input CreateDeliveryInfoInput {
+  userId: String!
+  billingAddress: BillingInfoInput!
+  shippingAddress: ShippingInfoInput!
+}
+
+input CreateDiscountInput {
+  title: String!
+  description: String
+  type: DiscountType!
+  amount: Int
+  percentage: Int
+  validFrom: DateTime
+  validThrough: DateTime
+  enabled: Boolean
+}
+
+input CreateOrderInput {
+  items: [OrderItemsInput!]!
+  billingAddress: BillingInfoInput!
+  shippingAddress: ShippingInfoInput!
+  paymentType: PaymentType!
+  paymentProvider: PaymentProvider!
+  status: OrderStatus
+  total: Int!
+  subTotal: Int!
+  discountAmount: Int
+  couponAmount: Int
+  shippingAmount: Int
+  taxAmount: Int
+}
+
+input CreatePaymentInput {
+  amount: Float!
+  type: String
+  provider: String
+  status: PaymentStatus
+  paymentIntentId: String
+}
+
+input CreateProductInput {
+  title: String!
+  description: String!
+  retailPrice: Int!
+  salePrice: Int!
+  brand: String!
+  dimensions: Dimensions
+  shipping: ShippingMethod
+  categories: [CategoriesInput!]
+}
+
+input CreateProfileInput {
+  firstName: String!
+  lastName: String
+  addressOne: String!
+  addressTwo: String
+  city: String!
+  state: String!
+  country: String!
+  zipcode: String!
+  profileImage: String
+}
+
+input CreateReviewInput {
+  id: String!
+}
+
+input CreateShippingInput {
+  title: String!
+  description: String
+  enabled: Boolean! = false
+  type: ShippingType!
+  amount: Float
+  percentage: Float
+}
+
+input CreateTaxInput {
+  title: String!
+  description: String
+  type: TaxTypes
+  amount: Int
+  percentage: Int
+  enabled: Boolean!
+}
+
+input CreateUserInput {
+  username: String!
+  email: String!
+  phone: String!
+  password: String!
+}
+
+enum Currency {
+  INR
+  USD
+  CAD
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type DeliveryInfo {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  user: User!
+  billingAddressOne: String
+  billingAddressTwo: String
+  billingCity: String
+  billingState: String
+  billingCountry: String
+  billingZipcode: String
+  billingEmail: String
+  billingPhone: String
+  shippingAddressOne: String
+  shippingAddressTwo: String
+  shippingCity: String
+  shippingState: String
+  shippingCountry: String
+  shippingZipcode: String
+}
+
+type DeliveryInfoDto {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  user: User!
+  billingAddress: BillingInfoDto
+  shippingAddress: BillingInfoDto
+}
+
+type DeltedUser {
+  id: ID!
+}
+
+input Dimensions {
+  width: Int
+  height: Int
+  depth: Int
+}
+
+type DimensionsResponse {
+  width: Float!
+  height: Float!
+  depth: Float!
+}
+
+type Discount {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String!
+  description: String
+  type: DiscountType!
+  amount: Int
+  percentage: Int
+  validFrom: DateTime
+  validThrough: DateTime
+  enabled: Boolean
+}
+
+enum DiscountType {
+  FLAT
+  PERCENTAGE
+}
+
+input Item {
+  id: String!
+  quantity: Int!
+  price: Int!
+}
+
+input LoginInput {
+  username: String!
+  password: String!
+}
+
+type LoginResponse {
+  username: String!
+  id: String!
+  role: String!
+  email: String!
+  name: String!
+  authenticated: Boolean!
+  accessToken: String!
+  refreshToken: String!
+}
+
+type Mutation {
+  createPaymentIntent(paymentInput: PaymentIntentInput!): PaymentIntentOutput!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  removeUser(id: String!): DeltedUser!
+  createReview(createReviewInput: CreateReviewInput!): Review!
+  updateReview(updateReviewInput: UpdateReviewInput!): Review!
+  removeReview(id: Int!): Review!
+  createCart(createCartInput: CreateCartInput!): Cart!
+  createCartItem(createCartItemInput: CreateCartItemInput!): Cart!
+  updateCartItem(updateCartItemInput: UpdateCartItemInput!): Cart!
+  removeCartItem(removeCartItemInput: RemoveCartItemInput!): Cart!
+  createOrder(createOrderInput: CreateOrderInput!): Order!
+  updateOrder(updateOrderInput: UpdateOrderInput!): Order!
+  removeOrder(id: String!): Order!
+  createPayment(createPaymentInput: CreatePaymentInput!): Payment!
+  updatePayment(updatePaymentInput: UpdatePaymentInput!): Payment!
+  removePayment(id: Int!): Payment!
+  createProduct(createProductInput: CreateProductInput!): Product!
+  updateProduct(updateProductInput: UpdateProductInput!): Product!
+  removeProduct(id: String!): Product!
+  createCategory(createCategoryInput: CreateCategoryInput!): Category!
+  updateCategory(updateCategoryInput: UpdateCategoryInput!): Category!
+  removeCategory(id: Int!): Category!
+  createShipping(createShippingInput: CreateShippingInput!): Shipping!
+  updateShipping(updateShippingInput: UpdateShippingInput!): Shipping!
+  removeShipping(id: String!): Shipping!
+  saveSetting(settingsInput: SettingsInput!): Setting!
+  createTax(createTaxInput: CreateTaxInput!): Tax!
+  updateTax(updateTaxInput: UpdateTaxInput!): Tax!
+  removeTax(id: Int!): Tax!
+  createDiscount(createDiscountInput: CreateDiscountInput!): Discount!
+  updateDiscount(updateDiscountInput: UpdateDiscountInput!): Discount!
+  removeDiscount(id: String!): Discount!
+  createCoupon(createCouponInput: CreateCouponInput!): Coupon!
+  updateCoupon(updateCouponInput: UpdateCouponInput!): Coupon!
+  removeCoupon(id: String!): Coupon!
+  applyCoupon(applyCouponInput: ApplyCouponDto!): Coupon!
+  createProfile(userId: String!, createProfileInput: CreateProfileInput!): Profile!
+  updateProfile(updateProfileInput: UpdateProfileInput!): Profile!
+  removeProfile(id: String!): Profile!
+  login(credentials: LoginInput!): LoginResponse!
+  signup(signupInput: CreateUserInput!, autoLogin: Boolean = false): SignupResponse!
+  refresh(refreshTokenInput: RefreshTokenInput!): RefreshTokenResponse!
+  createDeliveryInfo(createDeliveryInfoInput: CreateDeliveryInfoInput!): DeliveryInfoDto!
+  updateDeliveryInfo(updateDeliveryInfoInput: UpdateDeliveryInfoInput!): DeliveryInfo!
+  removeDeliveryInfo(id: String!): DeliveryInfo!
+}
+
+type Order {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  user: User!
+  items: [OrderItem!]!
+  total: Int!
+  subTotal: Int!
+  discountAmount: Int
+  couponAmount: Int
+  shippingAmount: Int
+  taxAmount: Int
+  status: OrderStatus
+  payment: Payment!
+  processedAt: DateTime
+  shippedAt: DateTime
+  fulfilledAt: DateTime
+  cancelledAt: DateTime
+  billingAddress: BillingInfoDto!
+  shippingAddress: ShippingInfoDto!
+}
+
+type OrderItem {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  order: Order!
+  product: Product!
+  quantity: Int!
+  price: Int!
+  total: Int
+}
+
+input OrderItemsInput {
+  id: String!
+  quantity: Int!
+  price: Int!
+  total: Int!
+}
+
+enum OrderStatus {
+  CREATED
+  PROCESSING
+  SHIPPED
+  FULLFILLED
+  CALCELLED
+}
+
+type Payment {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  amount: Int!
+  type: PaymentType!
+  provider: PaymentProvider!
+  status: PaymentStatus!
+  order: Order!
+  failedReason: String
+  paymentIntentId: String
+}
+
+input PaymentIntentInput {
+  orderId: String!
+  total: Int!
+}
+
+type PaymentIntentOutput {
+  clientSecret: String!
+}
+
+enum PaymentProvider {
+  STRIPE
+}
+
+enum PaymentStatus {
+  PAID
+  PENDING
+  PROCESSING
+  FAILED
+  CANCELLED
+  REFUNDED
+}
+
+enum PaymentType {
+  CARD
+  CASH
+}
+
+type Product {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String!
+  description: String
+  slug: String
+  retailPrice: Int!
+  salePrice: Int!
+  brand: String
+  stock: Int!
+  categories: [Category!]
+  reviews(take: Int = 10, skip: Int = 0): [Review!]
+  shipping: Shipping
+  dimensions: DimensionsResponse!
+  realtedProducts: [Product!]!
+}
+
+input ProductIds {
+  id: String!
+}
+
+type Profile {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  firstName: String!
+  lastName: String
+  addressOne: String!
+  addressTwo: String
+  city: String!
+  state: String!
+  country: String!
+  zipcode: String!
+  profileImage: String
+  user: User
+}
+
+type Query {
+  users(take: Int = 10, skip: Int = 0): [User!]!
+  user(id: String!): User!
+  reviews(take: Int = 10, skip: Int = 0): [Review!]!
+  review(id: Int!): Review!
+  cart(userId: String, cartId: String, guestId: String): Cart
+  orders(take: Int = 10, skip: Int = 0): [Order!]!
+  order(id: String!): Order!
+  payments(take: Int = 10, skip: Int = 0): [Payment!]!
+  payment(id: Int!): Payment!
+  products(take: Int = 10, skip: Int = 0): [Product!]!
+  product(id: String, slug: String): Product!
+  categories(take: Int = 10, skip: Int = 0): [Category!]!
+  category(id: Int!): Category!
+  shippings(take: Int = 10, skip: Int = 0): [Shipping!]!
+  shipping(id: String!): Shipping!
+  settings: [Setting!]!
+  setting(id: Int): Setting!
+  taxes: [Tax!]!
+  tax(id: Int!): Tax!
+  discounts(take: Int = 10, skip: Int = 0): [Discount!]!
+  discount(id: String!): Discount!
+  coupons(take: Int = 10, skip: Int = 0): [Coupon!]!
+  coupon(id: String!): Coupon!
+  profiles(take: Int, skip: Int): [Profile!]!
+  profile(id: String!): Profile!
+  deliveryInfos(take: Int = 10, skip: Int = 0): [DeliveryInfoDto!]!
+  deliveryInfo(id: String!): DeliveryInfoDto!
+}
+
+input RefreshTokenInput {
+  token: String!
+}
+
+type RefreshTokenResponse {
+  accessToken: String!
+}
+
+input RemoveCartItemInput {
+  itemId: String!
+  cartId: String!
+}
+
+type Review {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  review: String!
+  rating: Float!
+  user: User!
+  product: Product!
+}
+
+type Setting {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  addressOne: String
+  addressTwo: String
+  city: String
+  state: String
+  country: String
+  zipcode: String
+  email: String
+  phone: String
+  currency: Currency!
+  taxesEnabled: Boolean!
+  shippingEnabled: Boolean!
+  couponsEnabled: Boolean!
+  discountsEnabled: Boolean!
+}
+
+input SettingsInput {
+  id: String
+  addressOne: String
+  addressTwo: String
+  city: String
+  state: String
+  country: String
+  zipcode: String
+  email: String
+  phone: String
+  currency: String
+  taxesEnabled: Boolean
+  couponsEnabled: Boolean
+  shippingEnabled: Boolean
+  discountsEnabled: Boolean
+}
+
+type Shipping {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String!
+  description: String!
+  enabled: Boolean!
+  type: ShippingType!
+  amount: Int!
+  percentage: Int!
+  products: [Product!]
+}
+
+type ShippingInfoDto {
+  addressOne: String!
+  addressTwo: String!
+  city: String!
+  state: String!
+  country: String!
+  zipcode: String!
+}
+
+input ShippingInfoInput {
+  addressOne: String!
+  addressTwo: String
+  city: String!
+  state: String!
+  country: String!
+  zipcode: String!
+}
+
+input ShippingMethod {
+  id: String!
+}
+
+enum ShippingType {
+  FREE
+  FLAT
+  PERCENTAGE
+}
+
+type SignupResponse {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  username: String!
+  email: String!
+  phone: String!
+  emailVerified: Boolean
+  phoneVerified: Boolean
+  role: UserRole
+  profile: Profile
+  reviews: [Review!]!
+  cart: Cart
+  orders: [Order!]
+  deliveryInfo: DeliveryInfoDto
+  authenticated: Boolean
+  accessToken: String
+  refreshToken: String
+}
+
+type Tax {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String!
+  description: String!
+  type: TaxTypes!
+  amount: Int
+  percentage: Int
+  enabled: Boolean
+}
+
+enum TaxTypes {
+  FLAT
+  PERCENTAGE
+}
+
+input UpdateCartItemInput {
+  quantity: Int!
+  price: Int!
+  itemId: String!
+  cartId: String!
+}
+
+input UpdateCategoryInput {
+  title: String
+  description: String
+  products: [ProductIds!]
+  id: ID!
+}
+
+input UpdateCouponInput {
+  code: String
+  title: String
+  description: String
+  type: CouponType
+  usageType: CouponUsageType
+  validFrom: DateTime
+  validThrough: DateTime
+  amount: Int
+  percentage: Int
+  enabled: Boolean
+  id: String!
+}
+
+input UpdateDeliveryInfoInput {
+  userId: String
+  billingAddress: BillingInfoInput
+  shippingAddress: ShippingInfoInput
+  id: String!
+}
+
+input UpdateDiscountInput {
+  title: String
+  description: String
+  type: DiscountType
+  amount: Int
+  percentage: Int
+  validFrom: DateTime
+  validThrough: DateTime
+  enabled: Boolean
+  id: String!
+}
+
+input UpdateOrderInput {
+  items: [OrderItemsInput!]
+  billingAddress: BillingInfoInput
+  shippingAddress: ShippingInfoInput
+  paymentType: PaymentType
+  paymentProvider: PaymentProvider
+  status: OrderStatus
+  total: Int
+  subTotal: Int
+  discountAmount: Int
+  couponAmount: Int
+  shippingAmount: Int
+  taxAmount: Int
+  id: String!
+}
+
+input UpdatePaymentInput {
+  amount: Float
+  type: String
+  provider: String
+  status: PaymentStatus
+  paymentIntentId: String
+  id: String!
+}
+
+input UpdateProductInput {
+  title: String
+  description: String
+  retailPrice: Int
+  salePrice: Int
+  brand: String
+  dimensions: Dimensions
+  shipping: ShippingMethod
+  categories: [CategoriesInput!]
+  id: ID!
+}
+
+input UpdateProfileInput {
+  firstName: String
+  lastName: String
+  addressOne: String
+  addressTwo: String
+  city: String
+  state: String
+  country: String
+  zipcode: String
+  profileImage: String
+  id: String!
+}
+
+input UpdateReviewInput {
+  id: String!
+}
+
+input UpdateShippingInput {
+  title: String
+  description: String
+  enabled: Boolean = false
+  type: ShippingType
+  amount: Float
+  percentage: Float
+  id: String!
+}
+
+input UpdateTaxInput {
+  title: String
+  description: String
+  type: TaxTypes
+  amount: Int
+  percentage: Int
+  enabled: Boolean
+  id: String!
+}
+
+input UpdateUserInput {
+  username: String
+  email: String
+  phone: String
+  password: String
+  id: String!
+}
+
+type User {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  username: String!
+  email: String!
+  phone: String!
+  emailVerified: Boolean
+  phoneVerified: Boolean
+  role: UserRole
+  profile: Profile
+  reviews: [Review!]!
+  cart: Cart
+  orders: [Order!]
+  deliveryInfo: DeliveryInfoDto
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}
+

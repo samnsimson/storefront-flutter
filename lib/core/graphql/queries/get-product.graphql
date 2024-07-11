@@ -1,0 +1,6 @@
+#import 'package:storefront_app/core/graphql/fragments/product.fragment.graphql'
+query GetProduct($id: String, $slug: String) {
+    product(id: $id, slug: $slug) {
+        ...ProductFields
+    }
+}
