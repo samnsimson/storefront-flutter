@@ -9,6 +9,7 @@ import 'package:storefront_app/core/graphql/queries/__generated__/get-categories
 import 'package:storefront_app/core/graphql/queries/__generated__/get-categories.var.gql.dart';
 import 'package:storefront_app/core/utils/snapshot_builder.dart';
 import 'package:storefront_app/core/utils/utils.dart';
+import 'package:storefront_app/src/category/screens/category_list.dart';
 import 'package:storefront_app/src/category/screens/category_products_list.dart';
 
 class HomeCategoryList extends StatelessWidget {
@@ -54,7 +55,11 @@ class HomeCategoryList extends StatelessWidget {
                           final lastItem = index == categories.length - 1;
                           return GestureDetector(
                             onTap: () => lastItem
-                                ? {}
+                                ? Get.to(
+                                    () => CategoryListScreen(
+                                      categories: categories.toList(),
+                                    ),
+                                  )
                                 : Get.to(
                                     () => CategoryProductsListScreen(
                                       id: category.id,
@@ -66,8 +71,8 @@ class HomeCategoryList extends StatelessWidget {
                               children: [
                                 CircleAvatar(
                                   radius: 33.0,
-                                  backgroundColor: colorScheme.secondary,
-                                  foregroundColor: colorScheme.onSecondary,
+                                  backgroundColor: colorScheme.primary,
+                                  foregroundColor: colorScheme.onPrimary,
                                   child: lastItem ? const Icon(Icons.more_horiz) : Text('Cat $index'),
                                 ),
                                 spacer(height: 6.0),

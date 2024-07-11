@@ -17,6 +17,12 @@ class CartController extends GetxController {
   void removeFromCart(String id) {
     _cartBox.delete(id);
     cartItems.removeWhere((item) => item.id == id);
+    Get.snackbar(
+      "Item removed",
+      "item removed from cart",
+      snackPosition: SnackPosition.BOTTOM,
+      animationDuration: const Duration(milliseconds: 800),
+    );
   }
 
   void addToCart(CartDataModel item) {
@@ -25,9 +31,21 @@ class CartController extends GetxController {
       cartItem.quantity = item.quantity + 1;
       cartItem.save();
       cartItems[cartItems.indexWhere((el) => el.id == item.id)] = cartItem;
+      Get.snackbar(
+        "Item added",
+        "item ${item.title} updated",
+        snackPosition: SnackPosition.BOTTOM,
+        animationDuration: const Duration(milliseconds: 800),
+      );
     } else {
       _cartBox.put(item.id, item);
       cartItems.add(item);
+      Get.snackbar(
+        "Updated",
+        "item ${item.title} added to cart",
+        snackPosition: SnackPosition.BOTTOM,
+        animationDuration: const Duration(milliseconds: 800),
+      );
     }
   }
 }
