@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:storefront_app/core/widgets/appbar_title.dart';
 import 'package:storefront_app/core/widgets/cart_icon.dart';
+import 'package:storefront_app/core/widgets/menu_drawer.dart';
 import 'package:storefront_app/src/auth/services/auth_service.dart';
 import 'package:storefront_app/src/home/widgets/banner.dart';
 import 'package:storefront_app/src/home/widgets/main_body_container.dart';
@@ -16,13 +17,8 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
+      drawer: MenuDrawer(),
       appBar: AppBar(
-        leading: GestureDetector(
-            onTap: () async => await authService.signOut(),
-            child: Icon(
-              Icons.logout,
-              color: Theme.of(context).colorScheme.onSurface,
-            )),
         title: const AppBarTitle(title: "Home"),
         backgroundColor: colorScheme.surface,
         actions: [
