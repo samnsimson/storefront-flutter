@@ -43,7 +43,7 @@ class HomeCategoryList extends StatelessWidget {
                         itemCount: 8,
                         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 4,
-                          childAspectRatio: 1.0,
+                          childAspectRatio: 0.8,
                           crossAxisSpacing: 10.0,
                           mainAxisSpacing: 10.0,
                         ),
@@ -59,9 +59,8 @@ class HomeCategoryList extends StatelessWidget {
                                 foregroundColor: colorScheme.onSecondary,
                                 child: lastItem ? const Icon(Icons.more_horiz) : Text('Cat $index'),
                               ),
-                              spacer(height: 8.0),
+                              spacer(height: 6.0),
                               Flexible(
-                                fit: FlexFit.loose,
                                 child: Text(
                                   lastItem ? "More" : category.title,
                                   overflow: TextOverflow.ellipsis,

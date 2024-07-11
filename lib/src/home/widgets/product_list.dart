@@ -15,11 +15,8 @@ class ProductList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surfaceContainerHighest,
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -37,11 +34,14 @@ class ProductList extends StatelessWidget {
                 snapshot: snapshot,
                 onData: (data) {
                   final products = data.products;
-                  return Column(
-                    children: List.generate(products.length, (index) {
-                      final product = products[index];
-                      return ProductListItem(product: product);
-                    }),
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 16.0),
+                    child: Column(
+                      children: List.generate(products.length, (index) {
+                        final product = products[index];
+                        return ProductListItem(product: product);
+                      }),
+                    ),
                   );
                 },
               );

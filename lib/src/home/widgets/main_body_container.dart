@@ -8,12 +8,15 @@ class MainBodyContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.only(topLeft: Radius.circular(16.0), topRight: Radius.circular(16.0)),
-        color: Theme.of(context).colorScheme.surfaceContainerHighest,
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16.0),
+          color: Theme.of(context).colorScheme.surfaceContainerHighest,
+        ),
+        child: HomeCategoryList(),
       ),
-      child: HomeCategoryList(),
     );
   }
 }

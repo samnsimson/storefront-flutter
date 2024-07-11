@@ -26,13 +26,13 @@ class ProductListItem extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     product.title,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0, color: colorScheme.secondary),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0, color: colorScheme.onSurface),
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 8.0),
                   Text(
                     product.description!,
-                    style: const TextStyle(fontSize: 14.0),
+                    style: TextStyle(fontSize: 14.0, color: colorScheme.secondary),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                   ),

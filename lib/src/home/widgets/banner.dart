@@ -15,17 +15,17 @@ class BannerSlide extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemCount: 3,
           itemBuilder: (context, index) {
-            EdgeInsets itemPadding = const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0);
+            EdgeInsets itemPadding = const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0);
             if (index == 0) {
-              itemPadding = const EdgeInsets.only(left: 20.0, top: 20.0, bottom: 20.0);
+              itemPadding = const EdgeInsets.only(left: 16.0, top: 16.0, bottom: 16.0);
             } else if (index == 2) {
-              itemPadding = const EdgeInsets.only(right: 20.0, top: 20.0, bottom: 20.0);
+              itemPadding = const EdgeInsets.only(right: 16.0, top: 16.0, bottom: 16.0);
             }
             return Padding(
               padding: itemPadding,
               child: Container(
                 height: 200.0,
-                width: screenWidth - 80.0,
+                width: screenWidth - 72.0,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16.0),
                   color: colorScheme.surfaceContainerHighest,
