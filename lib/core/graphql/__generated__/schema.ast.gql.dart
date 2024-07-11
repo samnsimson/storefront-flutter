@@ -20,12 +20,6 @@ const specifiedBy = _i1.DirectiveDefinitionNode(
   locations: [_i1.DirectiveLocation.scalar],
   repeatable: false,
 );
-const oneOf = _i1.DirectiveDefinitionNode(
-  name: _i1.NameNode(value: 'oneOf'),
-  args: [],
-  locations: [_i1.DirectiveLocation.inputObject],
-  repeatable: false,
-);
 const ApplyCouponDto = _i1.InputObjectTypeDefinitionNode(
   name: _i1.NameNode(value: 'ApplyCouponDto'),
   directives: [],
@@ -1959,6 +1953,21 @@ const DiscountType = _i1.EnumTypeDefinitionNode(
       name: _i1.NameNode(value: 'PERCENTAGE'),
       directives: [],
     ),
+  ],
+);
+const FindByCategoryInput = _i1.InputObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'FindByCategoryInput'),
+  directives: [],
+  fields: [
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'categoryId'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+      defaultValue: null,
+    )
   ],
 );
 const Item = _i1.InputObjectTypeDefinitionNode(
@@ -4069,6 +4078,28 @@ const Query = _i1.ObjectTypeDefinitionNode(
           ),
           defaultValue: _i1.IntValueNode(value: '0'),
         ),
+      ],
+      type: _i1.ListTypeNode(
+        type: _i1.NamedTypeNode(
+          name: _i1.NameNode(value: 'Product'),
+          isNonNull: true,
+        ),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'categoryProducts'),
+      directives: [],
+      args: [
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'input'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'FindByCategoryInput'),
+            isNonNull: true,
+          ),
+          defaultValue: null,
+        )
       ],
       type: _i1.ListTypeNode(
         type: _i1.NamedTypeNode(
@@ -6452,7 +6483,6 @@ const UserRole = _i1.EnumTypeDefinitionNode(
 );
 const document = _i1.DocumentNode(definitions: [
   specifiedBy,
-  oneOf,
   ApplyCouponDto,
   BillingInfoDto,
   BillingInfoInput,
@@ -6486,6 +6516,7 @@ const document = _i1.DocumentNode(definitions: [
   DimensionsResponse,
   Discount,
   DiscountType,
+  FindByCategoryInput,
   Item,
   LoginInput,
   LoginResponse,

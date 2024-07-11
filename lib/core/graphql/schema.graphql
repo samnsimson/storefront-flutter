@@ -4,11 +4,6 @@ directive @specifiedBy(
   url: String!
 ) on SCALAR
 
-"""
-Indicates exactly one field must be supplied and this field must not be `null`.
-"""
-directive @oneOf on INPUT_OBJECT
-
 input ApplyCouponDto {
   code: String!
 }
@@ -303,6 +298,10 @@ enum DiscountType {
   PERCENTAGE
 }
 
+input FindByCategoryInput {
+  categoryId: String!
+}
+
 input Item {
   id: String!
   quantity: Int!
@@ -510,6 +509,7 @@ type Query {
   payments(take: Int = 10, skip: Int = 0): [Payment!]!
   payment(id: Int!): Payment!
   products(take: Int = 10, skip: Int = 0): [Product!]!
+  categoryProducts(input: FindByCategoryInput!): [Product!]!
   product(id: String, slug: String): Product!
   categories(take: Int = 10, skip: Int = 0): [Category!]!
   category(id: Int!): Category!

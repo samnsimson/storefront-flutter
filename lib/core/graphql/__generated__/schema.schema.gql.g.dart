@@ -310,6 +310,8 @@ Serializer<GCurrency> _$gCurrencySerializer = new _$GCurrencySerializer();
 Serializer<GDimensions> _$gDimensionsSerializer = new _$GDimensionsSerializer();
 Serializer<GDiscountType> _$gDiscountTypeSerializer =
     new _$GDiscountTypeSerializer();
+Serializer<GFindByCategoryInput> _$gFindByCategoryInputSerializer =
+    new _$GFindByCategoryInputSerializer();
 Serializer<GItem> _$gItemSerializer = new _$GItemSerializer();
 Serializer<GLoginInput> _$gLoginInputSerializer = new _$GLoginInputSerializer();
 Serializer<GOrderItemsInput> _$gOrderItemsInputSerializer =
@@ -1933,6 +1935,52 @@ class _$GDiscountTypeSerializer implements PrimitiveSerializer<GDiscountType> {
   GDiscountType deserialize(Serializers serializers, Object serialized,
           {FullType specifiedType = FullType.unspecified}) =>
       GDiscountType.valueOf(serialized as String);
+}
+
+class _$GFindByCategoryInputSerializer
+    implements StructuredSerializer<GFindByCategoryInput> {
+  @override
+  final Iterable<Type> types = const [
+    GFindByCategoryInput,
+    _$GFindByCategoryInput
+  ];
+  @override
+  final String wireName = 'GFindByCategoryInput';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GFindByCategoryInput object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'categoryId',
+      serializers.serialize(object.categoryId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GFindByCategoryInput deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GFindByCategoryInputBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'categoryId':
+          result.categoryId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
 }
 
 class _$GItemSerializer implements StructuredSerializer<GItem> {
@@ -6907,6 +6955,93 @@ class GDimensionsBuilder implements Builder<GDimensions, GDimensionsBuilder> {
   _$GDimensions _build() {
     final _$result =
         _$v ?? new _$GDimensions._(width: width, height: height, depth: depth);
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GFindByCategoryInput extends GFindByCategoryInput {
+  @override
+  final String categoryId;
+
+  factory _$GFindByCategoryInput(
+          [void Function(GFindByCategoryInputBuilder)? updates]) =>
+      (new GFindByCategoryInputBuilder()..update(updates))._build();
+
+  _$GFindByCategoryInput._({required this.categoryId}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        categoryId, r'GFindByCategoryInput', 'categoryId');
+  }
+
+  @override
+  GFindByCategoryInput rebuild(
+          void Function(GFindByCategoryInputBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GFindByCategoryInputBuilder toBuilder() =>
+      new GFindByCategoryInputBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GFindByCategoryInput && categoryId == other.categoryId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, categoryId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GFindByCategoryInput')
+          ..add('categoryId', categoryId))
+        .toString();
+  }
+}
+
+class GFindByCategoryInputBuilder
+    implements Builder<GFindByCategoryInput, GFindByCategoryInputBuilder> {
+  _$GFindByCategoryInput? _$v;
+
+  String? _categoryId;
+  String? get categoryId => _$this._categoryId;
+  set categoryId(String? categoryId) => _$this._categoryId = categoryId;
+
+  GFindByCategoryInputBuilder();
+
+  GFindByCategoryInputBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _categoryId = $v.categoryId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GFindByCategoryInput other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GFindByCategoryInput;
+  }
+
+  @override
+  void update(void Function(GFindByCategoryInputBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GFindByCategoryInput build() => _build();
+
+  _$GFindByCategoryInput _build() {
+    final _$result = _$v ??
+        new _$GFindByCategoryInput._(
+            categoryId: BuiltValueNullFieldError.checkNotNull(
+                categoryId, r'GFindByCategoryInput', 'categoryId'));
     replace(_$result);
     return _$result;
   }

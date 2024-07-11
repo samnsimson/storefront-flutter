@@ -587,6 +587,30 @@ class GDiscountType extends EnumClass {
   static GDiscountType valueOf(String name) => _$gDiscountTypeValueOf(name);
 }
 
+abstract class GFindByCategoryInput
+    implements Built<GFindByCategoryInput, GFindByCategoryInputBuilder> {
+  GFindByCategoryInput._();
+
+  factory GFindByCategoryInput(
+          [void Function(GFindByCategoryInputBuilder b) updates]) =
+      _$GFindByCategoryInput;
+
+  String get categoryId;
+  static Serializer<GFindByCategoryInput> get serializer =>
+      _$gFindByCategoryInputSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GFindByCategoryInput.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GFindByCategoryInput? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GFindByCategoryInput.serializer,
+        json,
+      );
+}
+
 abstract class GItem implements Built<GItem, GItemBuilder> {
   GItem._();
 

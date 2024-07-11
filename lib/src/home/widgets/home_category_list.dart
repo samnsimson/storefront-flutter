@@ -1,5 +1,6 @@
 import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:storefront_app/core/contants/contants.dart';
 import 'package:storefront_app/core/getx_controllers/graphql_client_controller.dart';
@@ -8,6 +9,7 @@ import 'package:storefront_app/core/graphql/queries/__generated__/get-categories
 import 'package:storefront_app/core/graphql/queries/__generated__/get-categories.var.gql.dart';
 import 'package:storefront_app/core/utils/snapshot_builder.dart';
 import 'package:storefront_app/core/utils/utils.dart';
+import 'package:storefront_app/src/category/screens/category_products_list.dart';
 
 class HomeCategoryList extends StatelessWidget {
   final GraphqlClientController _gql = Get.find();
@@ -50,34 +52,37 @@ class HomeCategoryList extends StatelessWidget {
                         itemBuilder: (BuildContext context, int index) {
                           final category = categories[index];
                           final lastItem = index == categories.length - 1;
-                          final categoryItem = Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              CircleAvatar(
-                                radius: 33.0,
-                                backgroundColor: colorScheme.secondary,
-                                foregroundColor: colorScheme.onSecondary,
-                                child: lastItem ? const Icon(Icons.more_horiz) : Text('Cat $index'),
-                              ),
-                              spacer(height: 6.0),
-                              Flexible(
-                                child: Text(
-                                  lastItem ? "More" : category.title,
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.secondary),
+                          return GestureDetector(
+                            onTap: () => lastItem
+                                ? {}
+                                : Get.to(
+                                    () => CategoryProductsListScreen(
+                                      id: category.id,
+                                      title: category.title,
+                                    ),
+                                  ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                CircleAvatar(
+                                  radius: 33.0,
+                                  backgroundColor: colorScheme.secondary,
+                                  foregroundColor: colorScheme.onSecondary,
+                                  child: lastItem ? const Icon(Icons.more_horiz) : Text('Cat $index'),
                                 ),
-                              ),
-                            ],
+                                spacer(height: 6.0),
+                                Flexible(
+                                  child: Text(
+                                    lastItem ? "More" : category.title,
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 1,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.secondary),
+                                  ),
+                                ),
+                              ],
+                            ),
                           );
-
-                          return lastItem
-                              ? GestureDetector(
-                                  onTap: () {},
-                                  child: categoryItem,
-                                )
-                              : categoryItem;
                         },
                       );
                     },

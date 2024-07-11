@@ -32,6 +32,7 @@ import 'package:storefront_app/core/graphql/__generated__/schema.schema.gql.dart
         GDateTime,
         GDimensions,
         GDiscountType,
+        GFindByCategoryInput,
         GItem,
         GLoginInput,
         GOrderItemsInput,
@@ -99,6 +100,19 @@ import 'package:storefront_app/core/graphql/queries/__generated__/get-product.re
     show GGetProductReq;
 import 'package:storefront_app/core/graphql/queries/__generated__/get-product.var.gql.dart'
     show GGetProductVars;
+import 'package:storefront_app/core/graphql/queries/__generated__/get-products-by-category.data.gql.dart'
+    show
+        GGetProductsByCategoryData,
+        GGetProductsByCategoryData_categoryProducts,
+        GGetProductsByCategoryData_categoryProducts_categories,
+        GGetProductsByCategoryData_categoryProducts_dimensions,
+        GGetProductsByCategoryData_categoryProducts_realtedProducts,
+        GGetProductsByCategoryData_categoryProducts_reviews,
+        GGetProductsByCategoryData_categoryProducts_shipping;
+import 'package:storefront_app/core/graphql/queries/__generated__/get-products-by-category.req.gql.dart'
+    show GGetProductsByCategoryReq;
+import 'package:storefront_app/core/graphql/queries/__generated__/get-products-by-category.var.gql.dart'
+    show GGetProductsByCategoryVars;
 import 'package:storefront_app/core/graphql/queries/__generated__/get-products.data.gql.dart'
     show
         GGetProductsData,
@@ -142,6 +156,7 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GDateTime,
   GDimensions,
   GDiscountType,
+  GFindByCategoryInput,
   GGetCategoriesData,
   GGetCategoriesData_categories,
   GGetCategoriesReq,
@@ -155,6 +170,15 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetProductData_product_shipping,
   GGetProductReq,
   GGetProductVars,
+  GGetProductsByCategoryData,
+  GGetProductsByCategoryData_categoryProducts,
+  GGetProductsByCategoryData_categoryProducts_categories,
+  GGetProductsByCategoryData_categoryProducts_dimensions,
+  GGetProductsByCategoryData_categoryProducts_realtedProducts,
+  GGetProductsByCategoryData_categoryProducts_reviews,
+  GGetProductsByCategoryData_categoryProducts_shipping,
+  GGetProductsByCategoryReq,
+  GGetProductsByCategoryVars,
   GGetProductsData,
   GGetProductsData_products,
   GGetProductsData_products_categories,

@@ -31,6 +31,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GDateTime.serializer)
       ..add(GDimensions.serializer)
       ..add(GDiscountType.serializer)
+      ..add(GFindByCategoryInput.serializer)
       ..add(GGetCategoriesData.serializer)
       ..add(GGetCategoriesData_categories.serializer)
       ..add(GGetCategoriesReq.serializer)
@@ -44,6 +45,16 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GGetProductData_product_shipping.serializer)
       ..add(GGetProductReq.serializer)
       ..add(GGetProductVars.serializer)
+      ..add(GGetProductsByCategoryData.serializer)
+      ..add(GGetProductsByCategoryData_categoryProducts.serializer)
+      ..add(GGetProductsByCategoryData_categoryProducts_categories.serializer)
+      ..add(GGetProductsByCategoryData_categoryProducts_dimensions.serializer)
+      ..add(GGetProductsByCategoryData_categoryProducts_realtedProducts
+          .serializer)
+      ..add(GGetProductsByCategoryData_categoryProducts_reviews.serializer)
+      ..add(GGetProductsByCategoryData_categoryProducts_shipping.serializer)
+      ..add(GGetProductsByCategoryReq.serializer)
+      ..add(GGetProductsByCategoryVars.serializer)
       ..add(GGetProductsData.serializer)
       ..add(GGetProductsData_products.serializer)
       ..add(GGetProductsData_products_categories.serializer)
@@ -117,6 +128,31 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList,
               const [const FullType(GGetProductData_product_realtedProducts)]),
           () => new ListBuilder<GGetProductData_product_realtedProducts>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(GGetProductsByCategoryData_categoryProducts)
+          ]),
+          () => new ListBuilder<GGetProductsByCategoryData_categoryProducts>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(
+                GGetProductsByCategoryData_categoryProducts_categories)
+          ]),
+          () => new ListBuilder<
+              GGetProductsByCategoryData_categoryProducts_categories>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(GGetProductsByCategoryData_categoryProducts_reviews)
+          ]),
+          () => new ListBuilder<
+              GGetProductsByCategoryData_categoryProducts_reviews>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(
+                GGetProductsByCategoryData_categoryProducts_realtedProducts)
+          ]),
+          () => new ListBuilder<
+              GGetProductsByCategoryData_categoryProducts_realtedProducts>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GGetProductsData_products)]),
