@@ -10,6 +10,12 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(FetchPolicy.serializer)
       ..add(GApplyCouponDto.serializer)
       ..add(GBillingInfoInput.serializer)
+      ..add(GCartFieldsData.serializer)
+      ..add(GCartFieldsData_items.serializer)
+      ..add(GCartFieldsData_items_product.serializer)
+      ..add(GCartFieldsData_user.serializer)
+      ..add(GCartFieldsReq.serializer)
+      ..add(GCartFieldsVars.serializer)
       ..add(GCategoriesInput.serializer)
       ..add(GCouponType.serializer)
       ..add(GCouponUsageType.serializer)
@@ -32,6 +38,13 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GDimensions.serializer)
       ..add(GDiscountType.serializer)
       ..add(GFindByCategoryInput.serializer)
+      ..add(GGetCartData.serializer)
+      ..add(GGetCartData_cart.serializer)
+      ..add(GGetCartData_cart_items.serializer)
+      ..add(GGetCartData_cart_items_product.serializer)
+      ..add(GGetCartData_cart_user.serializer)
+      ..add(GGetCartReq.serializer)
+      ..add(GGetCartVars.serializer)
       ..add(GGetCategoriesData.serializer)
       ..add(GGetCategoriesData_categories.serializer)
       ..add(GGetCategoriesReq.serializer)
@@ -107,11 +120,19 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GUpdateUserInput.serializer)
       ..add(GUserRole.serializer)
       ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(GCartFieldsData_items)]),
+          () => new ListBuilder<GCartFieldsData_items>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GCategoriesInput)]),
           () => new ListBuilder<GCategoriesInput>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GCategoriesInput)]),
           () => new ListBuilder<GCategoriesInput>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(GGetCartData_cart_items)]),
+          () => new ListBuilder<GGetCartData_cart_items>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GGetCategoriesData_categories)]),

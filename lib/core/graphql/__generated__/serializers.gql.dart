@@ -63,6 +63,16 @@ import 'package:storefront_app/core/graphql/__generated__/schema.schema.gql.dart
         GUpdateTaxInput,
         GUpdateUserInput,
         GUserRole;
+import 'package:storefront_app/core/graphql/fragments/__generated__/cart-fields.data.gql.dart'
+    show
+        GCartFieldsData,
+        GCartFieldsData_items,
+        GCartFieldsData_items_product,
+        GCartFieldsData_user;
+import 'package:storefront_app/core/graphql/fragments/__generated__/cart-fields.req.gql.dart'
+    show GCartFieldsReq;
+import 'package:storefront_app/core/graphql/fragments/__generated__/cart-fields.var.gql.dart'
+    show GCartFieldsVars;
 import 'package:storefront_app/core/graphql/fragments/__generated__/product.fragment.data.gql.dart'
     show
         GProductFieldsData,
@@ -81,6 +91,17 @@ import 'package:storefront_app/core/graphql/mutations/__generated__/login.req.gq
     show GLoginReq;
 import 'package:storefront_app/core/graphql/mutations/__generated__/login.var.gql.dart'
     show GLoginVars;
+import 'package:storefront_app/core/graphql/queries/__generated__/get-cart.data.gql.dart'
+    show
+        GGetCartData,
+        GGetCartData_cart,
+        GGetCartData_cart_items,
+        GGetCartData_cart_items_product,
+        GGetCartData_cart_user;
+import 'package:storefront_app/core/graphql/queries/__generated__/get-cart.req.gql.dart'
+    show GGetCartReq;
+import 'package:storefront_app/core/graphql/queries/__generated__/get-cart.var.gql.dart'
+    show GGetCartVars;
 import 'package:storefront_app/core/graphql/queries/__generated__/get-categories.data.gql.dart'
     show GGetCategoriesData, GGetCategoriesData_categories;
 import 'package:storefront_app/core/graphql/queries/__generated__/get-categories.req.gql.dart'
@@ -135,6 +156,12 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
 @SerializersFor([
   GApplyCouponDto,
   GBillingInfoInput,
+  GCartFieldsData,
+  GCartFieldsData_items,
+  GCartFieldsData_items_product,
+  GCartFieldsData_user,
+  GCartFieldsReq,
+  GCartFieldsVars,
   GCategoriesInput,
   GCouponType,
   GCouponUsageType,
@@ -157,6 +184,13 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GDimensions,
   GDiscountType,
   GFindByCategoryInput,
+  GGetCartData,
+  GGetCartData_cart,
+  GGetCartData_cart_items,
+  GGetCartData_cart_items_product,
+  GGetCartData_cart_user,
+  GGetCartReq,
+  GGetCartVars,
   GGetCategoriesData,
   GGetCategoriesData_categories,
   GGetCategoriesReq,

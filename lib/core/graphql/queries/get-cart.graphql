@@ -1,0 +1,6 @@
+#import 'package:storefront_app/core/graphql/fragments/cart-fields.graphql'
+query GetCart($userId: String, $cartId: String, $guestId: String) {
+    cart(userId: $userId, cartId: $cartId, guestId: $guestId) {
+        ...CartFields
+    }
+}
