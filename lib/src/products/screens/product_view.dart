@@ -12,6 +12,7 @@ import 'package:storefront_app/core/widgets/cart_icon.dart';
 import 'package:storefront_app/src/products/widgets/product_image_list.dart';
 import 'package:storefront_app/src/products/widgets/product_info.dart';
 import 'package:storefront_app/src/products/widgets/product_main_image.dart';
+import 'package:storefront_app/src/products/widgets/related_products_list.dart';
 
 class ProductViewScreen extends StatelessWidget {
   final String id;
@@ -46,6 +47,10 @@ class ProductViewScreen extends StatelessWidget {
                           const ProductImageList(),
                           spacer(height: 16.0),
                           ProductInfo(product: product),
+                          spacer(height: 32.0),
+                          RelatedProductsList(
+                            products: product.realtedProducts.toList(),
+                          ),
                         ],
                       ),
                     );

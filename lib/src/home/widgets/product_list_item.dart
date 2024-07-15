@@ -14,7 +14,10 @@ class ProductListItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
       child: GestureDetector(
-        onTap: () => Get.to(() => ProductViewScreen(id: product.id)),
+        onTap: () => Get.to(
+          () => ProductViewScreen(id: product.id),
+          transition: Transition.fade,
+        ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
